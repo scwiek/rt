@@ -1426,6 +1426,13 @@ passwords. Setting it to 0 disables this check.
 
 Set($MinimumPasswordLength, 5);
 
+=item C<$DisablePasswordForAuthToken>
+
+If you have a mix of local and external authentication you can disable
+requiring a password to create tokens with the following line in
+C<etc/RT_SiteConfig.pm>. You can find more information about tokens in
+L<RT::Authen::Token>.
+
 =back
 
 =head3 External Authentication and Authorization
@@ -1477,6 +1484,10 @@ are not in LDAP can still be created when they email in.
 See L<RT::Authen::ExternalAuth> for details.
 
 =back
+
+=cut
+
+Set($DisablePasswordForAuthToken, 0);
 
 
 =head2 Initialdata Formats
