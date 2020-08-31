@@ -527,6 +527,36 @@ function addprincipal_onchange(ev, ui) {
     }
 }
 
+// disable submit on enter in autocomplete boxes
+jQuery(function() {
+    jQuery('input[data-autocomplete]').each(function() {
+        var input = jQuery(this);
+
+        // don't disable autosubmit for Queue select, CreateTicketInQueue, or Ticket autocompletes on Ticket pages
+        if (input.attr('data-autocomplete-autosubmit') || input.attr('data-autocomplete') === 'Queues' ||
+            input.attr('data-autocomplete') === 'Tickets') {
+            return true;
+        }
+
+        // don't disable autosubmit for watcher inputs
+        var watcher_regex = new RegExp('^WatcherAddressEmail');
+        if (watcher_regex.test(input.attr('id'))) {
+            return true;
+        }
+
+        // don't disable autocompleteselect events like those on the Admin pages.
+        // autocomplete-UserString, autocomplete-GroupString
+        if (input.attr('id') === 'autocomplete-UserString' || input.attr('id') === 'autocomplete-GroupString') {
+            return true;
+        }
+
+        input.on('keypress', function(event) {
+            if (event.keyCode === 13) {
+                return false;
+            }
+        });
+    });
+});
 
 function escapeCssSelector(str) {
     return str.replace(/([^A-Za-z0-9_-])/g,'\\$1');
