@@ -2970,7 +2970,7 @@ If this is not set at all, then it's equivalent to no allowed components.
 Set(
     $SelfServicePageComponents,
     [
-        qw(QuickCreate RefreshHomepage) # loc_qw
+        qw(RefreshHomepage) # loc_qw
     ]
 );
 
