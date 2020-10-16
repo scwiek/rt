@@ -504,6 +504,21 @@ Below are some examples using the endpoints above.
         -d '{ "MergeInto": 3 }'
         'https://myrt.com/REST/2.0/ticket/6'
 
+    # Take a ticket
+    curl -X PUT -H "Content-Type: application/json" -u 'root:password'
+        -d '{ "Take": 1 }'
+        'https://myrt.com/REST/2.0/ticket/6'
+
+    # Untake a ticket
+    curl -X PUT -H "Content-Type: application/json" -u 'root:password'
+        -d '{ "Untake": 1 }'
+        'https://myrt.com/REST/2.0/ticket/6'
+
+    # Steal a ticket
+    curl -X PUT -H "Content-Type: application/json" -u 'root:password'
+        -d '{ "Steal": 1 }'
+        'https://myrt.com/REST/2.0/ticket/6'
+
     # Correspond a ticket
     curl -X POST -H "Content-Type: application/json" -u 'root:password'
         -d '{ "Content": "Testing a correspondence", "ContentType": "text/plain" }'

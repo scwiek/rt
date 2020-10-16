@@ -113,6 +113,14 @@ sub update_record {
         my ( $ok, $msg ) = $self->record->MergeInto($ticket_id);
         push @results, $msg;
     }
+
+    for my $action (qw/Take Untake Steal/) {
+        if ( delete $data->{$action} ) {
+            my ( $ok, $msg ) = $self->record->$action();
+            push @results, $msg;
+        }
+    }
+
     push @results, $self->_update_record($data);
     return @results;
 }
