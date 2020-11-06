@@ -142,8 +142,10 @@ sub bootstrap_more_config {
 
         my $ca = $self->smime_key_path("demoCA", "cacert.pem");
 
+        if (!$args->{GnuPG}) {
+            print $handle qq{ Set(\%GnuPG, Enable => 0); };
+        }
         print $handle qq{
-        Set(\%GnuPG, Enable => 0);
         Set(\%SMIME =>
             Enable => 1,
             Passphrase => {
